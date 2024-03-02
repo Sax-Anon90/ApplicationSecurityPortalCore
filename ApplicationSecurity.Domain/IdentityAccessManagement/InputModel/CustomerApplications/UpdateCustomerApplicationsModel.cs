@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationSecurity.Domain.IdentityAccessManagement.InputModel.CustomerApplications
 {
-    internal class UpdateCustomerApplicationsModel
+    public class UpdateCustomerApplicationsModel
     {
         public int Id { get; set; }
         public int CustomerForApplicationId { get; set; }

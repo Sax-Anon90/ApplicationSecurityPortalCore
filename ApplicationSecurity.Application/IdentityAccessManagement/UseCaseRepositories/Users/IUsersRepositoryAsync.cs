@@ -19,6 +19,7 @@ namespace ApplicationSecurity.Application.IdentityAccessManagement.UseCaseReposi
         Task<User> UpdateUserAsync(User userToUpdate);
         Task<User> DeleteUserAsync(User UserToRemove);
         Task<User> GetUserByEmailAsync(string email);
+        Task<UsersViewModel> GetUserByEmailAndPasswordHashAsync(UserAuthDetailsModel userAuthDeatilsModel);
 
     }
 }
