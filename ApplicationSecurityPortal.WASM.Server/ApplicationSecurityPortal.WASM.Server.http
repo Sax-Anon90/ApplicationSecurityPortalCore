@@ -1,0 +1,6 @@
+@ApplicationSecurityPortal.WASM.Server_HostAddress = http://localhost:5157
+
+GET {{ApplicationSecurityPortal.WASM.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
