@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplicationSecurity.Domain.EmailServices.EmailTemplatesDomain
+namespace ApplicationSecurity.Domain.IdentityAccessManagement.InputModel.UserTypes
 {
-    public class EmailTemplatesUpdateModel
+    public class UserTypeModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public string TemplateHtml { get; set; }
     }
 }
