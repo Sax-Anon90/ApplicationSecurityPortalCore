@@ -35,11 +35,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{92AD5A63-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrustructure", "Infrustructure", "{E227AD93-3C1D-48E7-B14F-B2FCC03D0B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Domain", "ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj", "{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityPortal.Domain", "ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj", "{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Application", "ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj", "{027A5989-890B-4A2F-B086-1E16D959452C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityPortal.Application", "ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj", "{027A5989-890B-4A2F-B086-1E16D959452C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Infrustructure", "ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj", "{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityPortal.Infrustructure", "ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj", "{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,16 +1,44 @@
-﻿@inherits LayoutComponentBase
+﻿
+@inherits LayoutComponentBase
+
+<RadzenComponents />
+
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
+        <RadzenLayout>
+            <RadzenHeader>
+                <RadzenRow AlignItems="AlignItems.Center" Gap="3">
+                    <RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
+                    <RadzenBadge BadgeStyle="BadgeStyle.Danger" Shade="Shade.Dark">
+                        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem" Style="padding: 0 0.25rem 0 0; text-transform: none;">
+                            <RadzenIcon Icon="account_box" />Welcome
+                        </RadzenStack>
+                    </RadzenBadge>
+                </RadzenRow>
+            </RadzenHeader>
+            <RadzenSidebar>
+                <RadzenPanelMenu>
+                    <RadzenPanelMenuItem Text="Home" Icon="home" Path="/" />
+                    <RadzenPanelMenuItem @rendermode="RenderMode.InteractiveWebAssembly" Text="Applications Management" Icon="line_weight" Path="/ApplicationManagement/CustomerForApplications/">
+                    </RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="User Management" Icon="group">
+                    </RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem @rendermode="RenderMode.InteractiveWebAssembly" Text="Configuration Management" Icon="open_with">
+                        <RadzenPanelMenuItem @rendermode="RenderMode.InteractiveWebAssembly" Text="User Types" Icon="group" />
+                    </RadzenPanelMenuItem>
+                </RadzenPanelMenu>
+            </RadzenSidebar>
+            <RadzenBody Style="padding-left:10px;">
+                @Body
+            </RadzenBody>
+            <RadzenFooter Style="height:40px;">
+                <RadzenText TextStyle="TextStyle.Body1" TextAlign="TextAlign.Center" class="mb-2">
+                    Admin Security Portal Ltd  © 2023 All Rights Reserved
+                </RadzenText>
+            </RadzenFooter>
+        </RadzenLayout>
     </main>
 </div>
+@code {
+    bool sidebar1Expanded = true;
+}

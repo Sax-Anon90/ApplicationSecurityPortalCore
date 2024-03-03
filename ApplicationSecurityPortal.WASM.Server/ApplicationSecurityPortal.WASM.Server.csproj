@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj" />
+    <ProjectReference Include="..\ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj" />
+    <ProjectReference Include="..\ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.WASM.Client\ApplicationSecurityPortal.WASM.Client.csproj" />
   </ItemGroup>
 
