@@ -17,19 +17,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{A73CBD80-FBD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWASM", "BlazorWASM", "{0C3AC138-15C0-4E5D-8AF5-8FE7D70E4EB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityApi.Api", "ApplicationSecurityApi.Api\ApplicationSecurityApi.Api.csproj", "{48432E43-8CEF-4FDE-9340-3696372CF78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityApi.Api", "ApplicationSecurityApi.Api\ApplicationSecurityApi.Api.csproj", "{48432E43-8CEF-4FDE-9340-3696372CF78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurity.Domain", "ApplicationSecurity.Domain\ApplicationSecurity.Domain.csproj", "{1D971076-FBC6-4881-859C-A622E84EE252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurity.Domain", "ApplicationSecurity.Domain\ApplicationSecurity.Domain.csproj", "{1D971076-FBC6-4881-859C-A622E84EE252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurity.Application", "ApplicationSecurity.Application\ApplicationSecurity.Application.csproj", "{29301A7A-D049-41FD-ADB4-A53D21DAAB83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurity.Application", "ApplicationSecurity.Application\ApplicationSecurity.Application.csproj", "{29301A7A-D049-41FD-ADB4-A53D21DAAB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurity.Persistence", "ApplicationSecurity.Persistence\ApplicationSecurity.Persistence.csproj", "{4E7DC094-4E01-4900-9885-480B0944B4B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurity.Persistence", "ApplicationSecurity.Persistence\ApplicationSecurity.Persistence.csproj", "{4E7DC094-4E01-4900-9885-480B0944B4B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurity.Infrustructure", "ApplicationSecurity.Infrustructure\ApplicationSecurity.Infrustructure.csproj", "{363A4230-C391-4466-BE3A-1E7B3AE20E2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurity.Infrustructure", "ApplicationSecurity.Infrustructure\ApplicationSecurity.Infrustructure.csproj", "{363A4230-C391-4466-BE3A-1E7B3AE20E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.WASM.Client", "ApplicationSecurityPortal.WASM.Client\ApplicationSecurityPortal.WASM.Client.csproj", "{9AAF3B4D-D0DD-4ADA-882A-B73D9FA22E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityPortal.WASM.Client", "ApplicationSecurityPortal.WASM.Client\ApplicationSecurityPortal.WASM.Client.csproj", "{9AAF3B4D-D0DD-4ADA-882A-B73D9FA22E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.WASM.Server", "ApplicationSecurityPortal.WASM.Server\ApplicationSecurityPortal.WASM.Server.csproj", "{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSecurityPortal.WASM.Server", "ApplicationSecurityPortal.WASM.Server\ApplicationSecurityPortal.WASM.Server.csproj", "{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{92AD5A63-586B-4B62-9807-BD6A1B88E5F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrustructure", "Infrustructure", "{E227AD93-3C1D-48E7-B14F-B2FCC03D0B87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Domain", "ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj", "{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Application", "ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj", "{027A5989-890B-4A2F-B086-1E16D959452C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSecurityPortal.Infrustructure", "ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj", "{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +75,18 @@ Global
 		{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80BB0257-0A75-4D8C-9FE0-BA2C030EC899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{027A5989-890B-4A2F-B086-1E16D959452C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{027A5989-890B-4A2F-B086-1E16D959452C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{027A5989-890B-4A2F-B086-1E16D959452C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{027A5989-890B-4A2F-B086-1E16D959452C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +105,11 @@ Global
 		{363A4230-C391-4466-BE3A-1E7B3AE20E2E} = {7AEC7787-DD33-4551-9D5E-E6A719F13ACE}
 		{9AAF3B4D-D0DD-4ADA-882A-B73D9FA22E8F} = {0C3AC138-15C0-4E5D-8AF5-8FE7D70E4EB9}
 		{DDB2424F-AAEA-4363-9243-2A5F4BEA36C4} = {0C3AC138-15C0-4E5D-8AF5-8FE7D70E4EB9}
+		{92AD5A63-586B-4B62-9807-BD6A1B88E5F8} = {6D3DDEC7-0686-466D-9294-B25291D3DF61}
+		{E227AD93-3C1D-48E7-B14F-B2FCC03D0B87} = {6D3DDEC7-0686-466D-9294-B25291D3DF61}
+		{80BB0257-0A75-4D8C-9FE0-BA2C030EC899} = {92AD5A63-586B-4B62-9807-BD6A1B88E5F8}
+		{027A5989-890B-4A2F-B086-1E16D959452C} = {92AD5A63-586B-4B62-9807-BD6A1B88E5F8}
+		{A0B2EAFD-FA5B-45CB-BB85-E5F5BBE7887B} = {E227AD93-3C1D-48E7-B14F-B2FCC03D0B87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40D65AF8-7661-4BC3-BDE4-ED0E70E668B3}
