@@ -1,4 +1,4 @@
-This is the Demo Application Security Portal. The purpose of this application is to have a centralized web application portal to control the Role and Identity Access Management for any Software application.
+This is the Demo Application Security Portal. The purpose of this application is to have a centralized web application portal to control the Role and Identity Access Management for any Software application created by Developers.
 
 The Application contains Applications Management where users can be able to create customers for which applications will be created for, they can create customer applications then create role groups for these customer application and dynamically create role that are inside of those applications.
 
