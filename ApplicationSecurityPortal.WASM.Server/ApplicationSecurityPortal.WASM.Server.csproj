@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationSecurity.Domain\ApplicationSecurity.Domain.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj" />
