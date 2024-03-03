@@ -1,0 +1,118 @@
+﻿@page "/UserManagement/UsersList"
+
+@inject NotificationService _NotificationService
+@inject DialogService _dialogService
+@inject NavigationManager _navigationManager
+@inject HttpClient _httpClient
+
+<h3>Users List</h3>
+
+<PageTitle>User Management</PageTitle>
+
+<hr />
+<RadzenBreadCrumb>
+    <RadzenBreadCrumbItem Path="" Text="User Management" />
+    <RadzenBreadCrumbItem Path="" Text="Users List" />
+</RadzenBreadCrumb>
+<hr />
+<RadzenButton Text="Add new User"
+              Icon="add_circle_outline"
+              ButtonStyle="ButtonStyle.Success"
+              Shade="Shade.Dark"
+              Size="ButtonSize.Medium"
+              Variant="Variant.Outlined" />
+
+<hr />
+@if (UsersListData is null)
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="width:100%" />
+}
+else
+{
+    <RadzenDataGrid TItem="UsersViewModel"
+                    AllowFiltering="true"
+                    ShowPagingSummary="true"
+                    AllowColumnResize="true"
+                    AllowSorting="true" AllowPaging="true" PageSize="10"
+                    Data="@UsersListData">
+        <Columns>
+            <RadzenDataGridColumn TItem="UsersViewModel" Property="FirstName" Title="First Name" />
+            <RadzenDataGridColumn TItem="UsersViewModel" Property="LastName" Title="Last Name" />
+            <RadzenDataGridColumn TItem="UsersViewModel" Property="UserType" Title="User Type" />
+            <RadzenDataGridColumn TItem="UsersViewModel" Property="Email" Title="Email" />
+            <RadzenDataGridColumn TItem="UsersViewModel" Property="ActiveFlag" Title="Active" TextAlign="TextAlign.Center">
+                <Template Context="data">
+                    <RadzenCheckBox @bind-Value="data.ActiveFlag"
+                                    Disabled="true" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="UsersViewModel" TextAlign="TextAlign.Left" Title="Actions">
+                <Template Context="data">
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="1rem" Wrap="FlexWrap.Wrap">
+                        <RadzenButton Text="Manage" Icon="line_weight" Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Warning" Style="width:100%" />
+                        <RadzenButton Text="Delete" Icon="delete" Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Danger" Style="width: 100%" />
+                    </RadzenStack>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+}
+
+
+@code {
+    public IEnumerable<UsersViewModel>? UsersListData { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsersListDataAsync();
+    }
+    private async Task LoadUsersListDataAsync()
+    {
+        UsersListData = null;
+
+        var data = await _httpClient.GetStringAsync("/api/Users");
+        var result = JsonConvert.DeserializeObject<Response<IEnumerable<UsersViewModel>>>(data);
+        if (result.Succeeded)
+        {
+            UsersListData = result.Data;
+        }
+        else if (result.Succeeded == false)
+        {
+            if (result.ExceptionError is not null)
+            {
+                ShowErrorNotificationMessage(result.Message, result.ExceptionError);
+            }
+            else
+            {
+                ShowErrorNotificationMessage(result.Message, string.Empty);
+            }
+
+            UsersListData = new List<UsersViewModel>();
+        }
+    }
+
+    void ShowErrorNotificationMessage(string ErrorMessage, string ExceptionErrorMessage)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = $"{ErrorMessage}",
+                Detail = ExceptionErrorMessage is null ? "" : ExceptionErrorMessage,
+                Duration = 40000
+            };
+        _NotificationService.Notify(message);
+    }
+
+    void ShowSuccessMessage(string Message)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = $"Success",
+                Detail = $"{Message}",
+                Duration = 1000
+            };
+        _NotificationService.Notify(message);
+    }
+}

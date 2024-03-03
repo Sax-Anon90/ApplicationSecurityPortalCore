@@ -1,5 +1,127 @@
-﻿<h3>CustomerForApplicationsList</h3>
+﻿@page "/ApplicationManagement/CustomerForApplications/"
+
+
+@inject DialogService _dialogService
+@inject NavigationManager _navigationManager
+@inject NotificationService _NotificationService
+@inject HttpClient _httpClient
+
+<PageTitle>Applications Management</PageTitle>
+
+<h3>Customer For Applications List</h3>
+
+<hr />
+
+<RadzenBreadCrumb>
+    <RadzenBreadCrumbItem Path="" Text="Application Management" />
+    <RadzenBreadCrumbItem Path="" Text="Customer For Applications" />
+</RadzenBreadCrumb>
+<hr />
+<br />
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="1rem" Wrap="FlexWrap.Wrap">
+    <RadzenButton Text="Add Customer For Application"
+                  Icon="add_circle_outline"
+                  ButtonStyle="ButtonStyle.Success"
+                  Shade="Shade.Dark"
+                  Size="ButtonSize.Medium"
+                  Variant="Variant.Outlined" />
+
+    <RadzenButton Text="Manage Customer For Applications"
+                  Icon="line_weight"
+                  ButtonStyle="ButtonStyle.Warning"
+                  Shade="Shade.Dark"
+                  Size="ButtonSize.Medium"
+                  Variant="Variant.Outlined" />
+</RadzenStack>
+<hr />
+@if (CustomerForApplicationList is null)
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="width:100%" />
+}
+else
+{
+    <RadzenDataGrid TItem="CustomerForApplicationsViewModel"
+                    AllowFiltering="true"
+                    ShowPagingSummary="true"
+                    AllowColumnResize="true"
+                    ColumnWidth="300px" AllowSorting="true" AllowPaging="true" PageSize="10"
+                    Data="@CustomerForApplicationList">
+        <Columns>
+            <RadzenDataGridColumn TItem="CustomerForApplicationsViewModel" Property="Name" Title="Name" />
+            <RadzenDataGridColumn TItem="CustomerForApplicationsViewModel" Property="Description" Title="Description" />
+            <RadzenDataGridColumn TItem="CustomerForApplicationsViewModel" Property="ActiveFlag" Title="Active" TextAlign="TextAlign.Center">
+                <Template Context="data">
+                    <RadzenCheckBox @bind-Value="data.ActiveFlag"
+                                    Disabled="true" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="CustomerForApplicationsViewModel" TextAlign="TextAlign.Left" Title="Actions">
+                <Template Context="data">
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="1rem" Wrap="FlexWrap.Wrap">
+                        <RadzenButton Text="Edit" Icon="edit" Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Warning" Style="width:100%" />
+                        <RadzenButton Text="Delete" Icon="delete" Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Danger" Style="width:100%" />
+                    </RadzenStack>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+}
 
 @code {
+    public IEnumerable<CustomerForApplicationsViewModel>? CustomerForApplicationList { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCustomerForApplicationListAsync();
+    }
+
+    private async Task LoadCustomerForApplicationListAsync()
+    {
+        CustomerForApplicationList = null;
+
+        var data = await _httpClient.GetStringAsync("/api/CustomerForApplications");
+        var result = JsonConvert.DeserializeObject<Response<IEnumerable<CustomerForApplicationsViewModel>>>(data);
+        if (result.Succeeded)
+        {
+            CustomerForApplicationList = result.Data;
+        }
+        else if (result.Succeeded == false)
+        {
+            if (result.ExceptionError is not null)
+            {
+                ShowErrorNotificationMessage(result.Message, result.ExceptionError);
+            }
+            else
+            {
+                ShowErrorNotificationMessage(result.Message, string.Empty);
+            }
+
+            CustomerForApplicationList = new List<CustomerForApplicationsViewModel>();
+        }
+    }
+
+    void ShowErrorNotificationMessage(string ErrorMessage, string ExceptionErrorMessage)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = $"{ErrorMessage}",
+                Detail = ExceptionErrorMessage is null ? "" : ExceptionErrorMessage,
+                Duration = 40000
+            };
+        _NotificationService.Notify(message);
+    }
+
+    void ShowSuccessMessage(string Message)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = $"Success",
+                Detail = $"{Message}",
+                Duration = 1000
+            };
+        _NotificationService.Notify(message);
+    }
 }

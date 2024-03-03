@@ -13,7 +13,7 @@ namespace ApplicationSecurityPortal.Infrustructure.BaseApiService
         public ApiService(IConfiguration _configuration)
         {
             this._configuration = _configuration;
-            BaseApiUrl = _configuration["ApiService:AdminPortalApiUri"].ToString();
+            BaseApiUrl = _configuration["ApiService:ApplicationSecurityApiUri"].ToString();
 
             AuthenticationServiceEndpoint = _configuration["ApiService:AuthenticationServiceEndpoint"].ToString();
             CustomerForApplicationEndpoint = _configuration["ApiService:CustomerForApplicationEndpoint"].ToString();

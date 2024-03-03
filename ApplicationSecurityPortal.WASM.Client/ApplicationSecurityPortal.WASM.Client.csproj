@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.2" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Radzen.Blazor" Version="4.25.9" />
   </ItemGroup>
 
@@ -19,13 +20,16 @@
 
   <ItemGroup>
     <Folder Include="Pages\ConfigurationManagement\" />
-    <Folder Include="Pages\UserManagement\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ApplicationSecurityPortal.Application\ApplicationSecurityPortal.Application.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.Domain\ApplicationSecurityPortal.Domain.csproj" />
     <ProjectReference Include="..\ApplicationSecurityPortal.Infrustructure\ApplicationSecurityPortal.Infrustructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Home.razor" />
   </ItemGroup>
 
 </Project>

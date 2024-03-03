@@ -1,0 +1,184 @@
+﻿@page "/"
+
+
+
+@inject DialogService _dialogService
+@inject NavigationManager _navigationManager
+@inject NotificationService _NotificationService
+@inject HttpClient _httpClient
+
+<h3>Home</h3>
+
+<PageTitle>Home</PageTitle>
+
+<div class="row p-0">
+    <div class="col-4">
+        <RadzenCard Variant="Variant.Filled" class="rz-shadow-10">
+            <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="1rem">
+                @if (UsersListData is null)
+                {
+                    <RadzenProgressBarCircular ProgressBarStyle="ProgressBarStyle.Danger" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+                }
+                else
+                {
+                    <RadzenIcon Icon="account_box" IconColor="@Colors.Info" Style="font-weight: 100;" />
+                    <RadzenStack Gap="0" JustifyContent="JustifyContent.Center">
+                        <RadzenText TextStyle="TextStyle.H6"><b>Total Users</b></RadzenText>
+                        <br />
+                        <RadzenText TextStyle="TextStyle.H6"><b>@UsersListData.Count()</b></RadzenText>
+                    </RadzenStack>
+                }
+            </RadzenStack>
+        </RadzenCard>
+    </div>
+    <div class="col-4">
+        <RadzenCard Variant="Variant.Filled" class="rz-shadow-10">
+            <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="1rem">
+                @if (CustomerForApplicationsListData is null)
+                {
+                    <RadzenProgressBarCircular ProgressBarStyle="ProgressBarStyle.Danger" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+                }
+                else
+                {
+                    <RadzenIcon Icon="account_box" IconColor="@Colors.Primary" Style="font-weight: 100;" />
+                    <RadzenStack Gap="0" JustifyContent="JustifyContent.Center">
+                        <RadzenText TextStyle="TextStyle.H6"><b>Total Customer For Applications</b></RadzenText>
+                        <br />
+                        <RadzenText TextStyle="TextStyle.H6"><b>@CustomerForApplicationsListData.Count()</b></RadzenText>
+                    </RadzenStack>
+
+                }
+            </RadzenStack>
+        </RadzenCard>
+    </div>
+    <div class="col-4">
+        <RadzenCard Variant="Variant.Filled" class="rz-shadow-10">
+            <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="1rem">
+                @if (CustomerApplicationsListData is null)
+                {
+                    <RadzenProgressBarCircular ProgressBarStyle="ProgressBarStyle.Danger" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+                }
+                else
+                {
+                    <RadzenIcon Icon="account_box" IconColor="@Colors.Danger" Style="font-weight: 100;" />
+                    <RadzenStack Gap="0" JustifyContent="JustifyContent.Center">
+                        <RadzenText TextStyle="TextStyle.H6"><b>Total Customer Applications</b></RadzenText>
+                        <br />
+                        <RadzenText TextStyle="TextStyle.H6"><b>@CustomerApplicationsListData.Count()</b></RadzenText>
+                    </RadzenStack>
+                }
+            </RadzenStack>
+        </RadzenCard>
+    </div>
+</div>
+
+@code {
+
+    public IEnumerable<UsersViewModel>? UsersListData { get; set; }
+    public IEnumerable<CustomerForApplicationsViewModel>? CustomerForApplicationsListData { get; set; }
+    public IEnumerable<CustomerApplicationsViewModel>? CustomerApplicationsListData { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsersData();
+        await LoadCustomerForApplicationsData();
+        await LoadCustomerApplicationsData();
+    }
+
+    private async Task LoadUsersData()
+    {
+        var data = await _httpClient.GetStringAsync("/api/Users");
+        var result = JsonConvert.DeserializeObject<Response<IEnumerable<UsersViewModel>>>(data);
+        if (result.Succeeded)
+        {
+            UsersListData = result.Data;
+        }
+        else if (result.Succeeded == false)
+        {
+            if (result.ExceptionError is not null)
+            {
+                ShowErrorNotificationMessage(result.Message, result.ExceptionError);
+            }
+            else
+            {
+                ShowErrorNotificationMessage(result.Message, string.Empty);
+            }
+
+            UsersListData = new List<UsersViewModel>();
+        }
+    }
+
+    private async Task LoadCustomerApplicationsData()
+    {
+        var data = await _httpClient.GetStringAsync("/api/CustomerApplications");
+        var result = JsonConvert.DeserializeObject<Response<IEnumerable<CustomerApplicationsViewModel>>>(data);
+        if (result.Succeeded)
+        {
+            CustomerApplicationsListData = result.Data;
+        }
+        else if (result.Succeeded == false)
+        {
+            if (result.ExceptionError is not null)
+            {
+                ShowErrorNotificationMessage(result.Message, result.ExceptionError);
+
+            }
+            else
+            {
+                ShowErrorNotificationMessage(result.Message, string.Empty);
+            }
+
+            CustomerApplicationsListData = new List<CustomerApplicationsViewModel>();
+        }
+    }
+
+    private async Task LoadCustomerForApplicationsData()
+    {
+        var data = await _httpClient.GetStringAsync("/api/CustomerForApplications");
+        var result = JsonConvert.DeserializeObject<Response<IEnumerable<CustomerForApplicationsViewModel>>>(data);
+        if (result.Succeeded)
+        {
+            CustomerForApplicationsListData = result.Data;
+        }
+        else if (result.Succeeded == false)
+        {
+            if (result.ExceptionError is not null)
+            {
+                ShowErrorNotificationMessage(result.Message, result.ExceptionError);
+            }
+            else
+            {
+                ShowErrorNotificationMessage(result.Message, string.Empty);
+            }
+
+            CustomerForApplicationsListData = new List<CustomerForApplicationsViewModel>();
+        }
+    }
+
+
+
+
+    void ShowErrorNotificationMessage(string ErrorMessage, string ExceptionErrorMessage)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = $"{ErrorMessage}",
+                Detail = ExceptionErrorMessage is null ? "" : ExceptionErrorMessage,
+                Duration = 40000
+            };
+        _NotificationService.Notify(message);
+    }
+
+    void ShowSuccessMessage(string Message)
+    {
+        var message = new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = $"Success",
+                Detail = $"{Message}",
+                Duration = 1000
+            };
+        _NotificationService.Notify(message);
+    }
+}
