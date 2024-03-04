@@ -13,9 +13,12 @@ Backend:
 -The Api contains Api versioning and uses Swagger Documentation
 -The Api uses JWT Authentication
 -The Api has Global Exception Handling
--The Api is using Entity Framework Core ORM with the Database First Approach
+-The Api is using Entity Framework Core ORM with the Database First Approach:
+-Download Application database here: [ApplicationSecurityDb.zip](https://github.com/Sax-Anon90/ApplicationSecurityPortalCore/files/14484413/ApplicationSecurityDb.zip)
 
 Front-end:
 -The Front-end is created using .NET Core Blazor WebAssembly as an Asp.net core hosted application using .NET 8 with Clean Architecture
 -The Front-end is using Radzen UI Library: https://blazor.radzen.com/
+
+-Make sure to have Microsoft SQL Server with SSMS installed on your machine with the application database created.
 
