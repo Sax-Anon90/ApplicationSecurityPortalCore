@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  applicationsecurityportal.wasm.server:
+    image: ${DOCKER_REGISTRY-}applicationsecurityportalwasmserver
+    build:
+      context: .
+      dockerfile: ApplicationSecurityPortal.WASM.Server/Dockerfile
+
+  applicationsecurityapi.api:
+    image: ${DOCKER_REGISTRY-}applicationsecurityapiapi
+    build:
+      context: .
+      dockerfile: ApplicationSecurityApi.Api/Dockerfile
+
